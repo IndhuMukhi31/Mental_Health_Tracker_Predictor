@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Hi {{ session.username }}! Track Your Mental Health</h2>
+    <form method="POST">
+        
+        Mood:  
+        <select name="mood" required>
+            <option value="Happy">Happy 😊</option>
+            <option value="Sad">Sad 😔</option>
+            <option value="Neutral">Neutral 😐</option>
+        </select><br><br>
+
+        Sleep Hours:
+        <input type="number" name="sleep" min="0" max="24" required><br><br>
+
+        Stress Level:
+        <select name="stress" required>
+            <option value="Low">Low Stress</option>
+            <option value="Moderate">Moderate Stress</option>
+            <option value="High">High Stress</option>
+            <option value="Extreme">Extreme Stress</option>
+        </select><br><br>
+
+        <button type="submit">Proceed to Quiz</button>
+    </form>
+</body>
+</html>

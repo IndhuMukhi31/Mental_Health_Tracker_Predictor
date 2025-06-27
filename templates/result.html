@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Mental Health Report</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Summary for {{ username }}</h2>
+    <p>Mood: {{ mood }}</p>
+    <p>Sleep Hours: {{ sleep }}</p>
+    <p>Stress Level: {{ stress }}</p>
+    <h2>Your Quiz Score: {{ score }}/30</h2>
+
+    {% if score <= 10 %}
+        <p>Your mental health looks good. Keep practicing self-care.</p>
+        <p><b>Tip:</b> Stay connected with positive people, eat well, stay active.</p>
+    {% elif score <= 20 %}
+        <p>Some signs of stress detected. Take small steps for self-care.</p>
+        <p><b>Tip:</b> Practice meditation, take short breaks, talk to trusted friends.</p>
+    {% else %}
+        <p>High stress level noticed. It's advisable to consult a professional.</p>
+        <p><b>Tip:</b> Reach out to a counselor, try stress management activities.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="/logout"><button>Exit</button></a>
+</body>
+</html>

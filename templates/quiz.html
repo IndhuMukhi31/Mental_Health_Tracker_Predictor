@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mental Health Quiz</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .question-block {
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .option {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mental Health Assessment</h1>
+    <form method="POST">
+        {% for i, q in enumerate(questions) %}
+            <div class="question-block">
+                <p><b>{{ i+1 }}. {{ q.q }}</b></p>
+                {% for option, score in zip(q.options, q.scores) %}
+                    <div class="option">
+                        <input type="radio" name="q{{ i }}" value="{{ score }}" required> {{ option }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
