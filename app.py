@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, session, redirect
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
-# Make zip and enumerate available in Jinja
+# Make zip and enumerate available in Jinja templates
 app.jinja_env.globals.update(zip=zip, enumerate=enumerate)
 
 # 15 Simple Mental Health Questions
@@ -25,6 +25,7 @@ questions = [
     {"q": "Do you feel mentally relaxed today?", "options": ["Yes", "No"], "scores": [0, 2]}
 ]
 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -32,16 +33,20 @@ def home():
         return redirect('/tracker')
     return render_template('index.html')
 
+
 @app.route('/tracker', methods=['GET', 'POST'])
 def tracker():
     if 'username' not in session:
         return redirect('/')
     if request.method == 'POST':
+        session['age'] = request.form['age']
+        session['gender'] = request.form['gender']
         session['mood'] = request.form['mood']
         session['sleep'] = request.form['sleep']
         session['stress'] = request.form['stress']
         return redirect('/quiz')
     return render_template('tracker.html')
+
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
@@ -54,13 +59,16 @@ def quiz():
             if ans:
                 total_score += int(ans)
         return render_template('result.html', score=total_score, mood=session['mood'],
-                               sleep=session['sleep'], stress=session['stress'], username=session['username'])
+                               sleep=session['sleep'], stress=session['stress'],
+                               username=session['username'], age=session['age'], gender=session['gender'])
     return render_template('quiz.html', questions=questions)
+
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

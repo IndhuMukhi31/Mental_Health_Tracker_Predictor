@@ -5,10 +5,13 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h2>Summary for {{ username }}</h2>
+    <h2>Summary for {{ session.username }}</h2>
+    <p>Age: {{ session.age }}</p>
+    <p>Gender: {{ session.gender }}</p>
     <p>Mood: {{ mood }}</p>
     <p>Sleep Hours: {{ sleep }}</p>
     <p>Stress Level: {{ stress }}</p>
+
     <h2>Your Quiz Score: {{ score }}/30</h2>
 
     {% if score <= 10 %}

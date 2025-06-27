@@ -1,5 +1,6 @@
 body {
-    background: #f0f8ff;
+    background: url('/static/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 30px;
@@ -11,16 +12,18 @@ h1, h2 {
 
 form {
     display: inline-block;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 input, select {
     padding: 10px;
     margin: 8px 0;
     width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
 
 button {

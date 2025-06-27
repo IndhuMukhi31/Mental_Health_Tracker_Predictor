@@ -7,8 +7,19 @@
 <body>
     <h1>Welcome to Mental Health Tracker</h1>
     <p>"Your mental health is a priority. Your happiness is essential."</p>
+
     <form method="POST">
         <input type="text" name="username" placeholder="Enter your name" required><br><br>
+        
+        <input type="number" name="age" placeholder="Enter your age" min="1" required><br><br>
+
+        <select name="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
         <button type="submit">Start</button>
     </form>
 </body>
