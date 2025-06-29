@@ -25,29 +25,29 @@ questions = [
     {"q": "Do you feel mentally relaxed today?", "options": ["Yes", "No"], "scores": [0, 2]}
 ]
 
-
+# Homepage - Collects name, age, gender
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         session['username'] = request.form['username']
+        session['age'] = request.form['age']
+        session['gender'] = request.form['gender']
         return redirect('/tracker')
     return render_template('index.html')
 
-
+# Tracker Page - Collect mood, sleep, stress
 @app.route('/tracker', methods=['GET', 'POST'])
 def tracker():
     if 'username' not in session:
         return redirect('/')
     if request.method == 'POST':
-        session['age'] = request.form['age']
-        session['gender'] = request.form['gender']
         session['mood'] = request.form['mood']
         session['sleep'] = request.form['sleep']
         session['stress'] = request.form['stress']
         return redirect('/quiz')
     return render_template('tracker.html')
 
-
+# Quiz Page
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     if 'username' not in session or 'mood' not in session:
@@ -58,17 +58,20 @@ def quiz():
             ans = request.form.get(f'q{i}')
             if ans:
                 total_score += int(ans)
-        return render_template('result.html', score=total_score, mood=session['mood'],
-                               sleep=session['sleep'], stress=session['stress'],
-                               username=session['username'], age=session['age'], gender=session['gender'])
+        return render_template('result.html', score=total_score,
+                               mood=session['mood'],
+                               sleep=session['sleep'],
+                               stress=session['stress'],
+                               username=session['username'],
+                               age=session['age'],
+                               gender=session['gender'])
     return render_template('quiz.html', questions=questions)
 
-
+# Logout Clears Session
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
