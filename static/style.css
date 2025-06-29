@@ -1,22 +1,16 @@
 body {
-    background: url('/static/background.jpeg') no-repeat center center;
-    background-size: contain;
+    background: url('/static/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-color: #d9eefe; /* light fallback background */
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 30px;
     min-height: 100vh;
+    margin: 0;
+    padding: 30px;
 }
 
-/* Headings style */
-h1, h2 {
-    color: #333;
-}
-
-/* Form box styling */
+/* Form Box Styling */
 form {
     display: inline-block;
     background: rgba(255, 255, 255, 0.9);
@@ -27,7 +21,12 @@ form {
     width: 90%;
 }
 
-/* Input and select fields */
+/* Headings */
+h1, h2 {
+    color: #333;
+}
+
+/* Input & Select */
 input, select {
     padding: 10px;
     margin: 8px 0;
@@ -36,7 +35,7 @@ input, select {
     border: 1px solid #ccc;
 }
 
-/* Buttons */
+/* Button */
 button {
     padding: 10px 25px;
     background: #4caf50;
@@ -50,14 +49,9 @@ button:hover {
     background: #45a049;
 }
 
-/* Paragraph style */
-p {
-    font-size: 16px;
-}
-
-/* Optional Mobile-specific adjustment */
+/* Responsive for Mobile */
 @media (max-width: 768px) {
     body {
-        background-size: contain;
+        background-size: cover;
     }
 }
